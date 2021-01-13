@@ -131,7 +131,7 @@ Para navegar entre os JCL aperte os botões UP e DOWN, ao escolher o JOB a ser e
 
 Segue o vídeo do projeto em funcionamento:
 
-[![MTM20 JOB SUBMITTER](https://i9.ytimg.com/vi/gtbkg5on7vc/mq3.jpg?sqp=CLC7_P8F&rs=AOn4CLBy4wr7uzF5hR5rV8VenkttQ2eOQQ)](https://youtu.be/gtbkg5on7vc)
+[![MTM20 JOB SUBMITTER](https://drive.google.com/file/d/1u0MW3mdprrniNUZ0U5Cf4RRjCzthGJ2B/view?usp=sharing)](https://youtu.be/gtbkg5on7vc)
 
 Obs2. Eu não tinha LED amarelo aí no projeto usei um LED azul no lugar. :🤷🏻‍♂️:
 
