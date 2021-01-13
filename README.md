@@ -117,7 +117,7 @@ passwd = "fruit102"      # Senha de usuário
 
 ## GO, GO, GO!
 
-Se toda a instalação ocorreu bem e foram feitas as ligações corretamente podemos executar nosso scrip com o comando:
+Se toda a instalação ocorreu bem e foram feitas as ligações corretamente podemos executar nosso script com o comando:
 
 `sudo python3 mtmjobsubmitter.py`
 
