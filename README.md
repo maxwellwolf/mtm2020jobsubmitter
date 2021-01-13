@@ -4,7 +4,7 @@ Este repositório possui os códigos fonte para implementar meu projeto final do
 
 O projeto consiste em um IoT que lista os JCL no mainframe e o usuário pode selecionar qual JOB irá submenter.
 
-Após a submissão do JOB o MTM2020 JOB SUBMITTER irá exibir no display o JOB ID e irá aguardar a conclusão da execução, após o término teremos três cenários:
+Após a submissão do JOB o MTM2020 JOB SUBMITTER irá exibir no display o JOB ID e aguardará a conclusão da execução, após o término teremos três cenários:
 * Caso a execução terminar com sucesso, irá exibir no display uma mensagem de felicitação e acenderá o um LED verde.
 * Caso a execução terminar com sucesso, porém, houver algum warning, irá exibir no display o retun code e acenderá o LED amarelo.
 * Caso a execução terminar com erro, será exibido no display o código de erro ou a mensagem de erro e acenderá o LED vermelho.
