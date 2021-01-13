@@ -88,6 +88,9 @@ try:
         if updt == 1:
             lcd.lcd_display_string("                    ", 2)
             lcd.lcd_display_string(dsList[count] + " < SELECT   ", 2)
+            GPIO.output(19, True)
+            GPIO.output(21, True)
+            GPIO.output(23, True)
             updt = 0
         if GPIO.input(15) == GPIO.LOW:
             count += 1
