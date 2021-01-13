@@ -86,7 +86,7 @@ A biblioteca python3-smbus é responsável por gerir a comunicação entre a int
 
 ### Instalando a biblioteca GPIO para Python
 
-A biblioteca python OPi.GPIO permite acessar e controlar as interfaces GPIO Orange PI Zero.
+A biblioteca python OPi.GPIO permite acessar e controlar as interfaces GPIO do Orange PI Zero.
 Essa biblioteca permite um mapeamento pelo número do pino, e não pelo número da porta, permitindo que o mesmo código seja executado em diferentes single-board computer de mercado sem a necessidade de alteração no código.
 
 `sudo pip3 install --upgrade OPi.GPIO`
@@ -134,3 +134,7 @@ Segue o vídeo do projeto em funcionamento:
 [![MTM20 JOB SUBMITTER](https://i9.ytimg.com/vi/gtbkg5on7vc/mq3.jpg?sqp=CLC7_P8F&rs=AOn4CLBy4wr7uzF5hR5rV8VenkttQ2eOQQ)](https://youtu.be/gtbkg5on7vc)
 
 Obs2. Eu não tinha LED amarelo aí no projeto usei um LED azul no lugar. :🤷🏻‍♂️:
+
+Uma foto ruim do projeto:
+
+![Foto](https://github.com/maxwellwolf/mtm2020jobsubmitter/blob/master/MTMJS.jpg?raw=true)
