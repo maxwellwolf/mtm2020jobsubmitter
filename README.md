@@ -12,72 +12,120 @@ Após a submissão do JOB o MTM2020 JOB SUBMITTER irá exibir no display o JOB I
 Foi utilizado para esse projeto os seguintes itens:
 - Um single-board computer Orange PI Zero rodando a versão do Linux Armbian.
 - Cartão de memória de 2Gb para a armazenar o sistema operacional.
-- Um display LCD 2004.
+- Um display LCD 2004 com módulo i2c.
 - 3 Push buttons.
 - 3 LEDs (Vermelho, Amarelo, Verde).
 - 3 Resistores de 10k
-- 3 Resistores de 220R
+- 3 Resistores de 330R
 - 1 Protoboard.
 - Jumpers para protoboard (Fios).
 
+## Esquema com as ligações dos componentes ao Orange PI Zero
+
+Por padrão a maioria dos single-board computer disponíveis no mercado possuem o mesmo layout de pinos.
+No caso do esquema abaixo estamos utilizando os pinos ímpare, sendo o pino 1 o primeiro da direita para esquerda de cima para baixo.
+
+![Schema](https://github.com/maxwellwolf/mtm2020jobsubmitter/blob/master/Pinouts.jpg?raw=true)
+
+## Preparando o ambiente para execução
+
+Para baixar a versão da imagem do Armbian para sua placa basta acessar o link de download do [Armbian](https://www.armbian.com/download/).
+
+Não irei entrar em detalhes sobre a instalação da imagem do Armbian no cartão de memória pois existem diversos tutoriais na internet.
+
+Prorém, como sou muito bom (Rsrs),  vou deixar esse [link](https://www.albertogonzalez.net/how-to-install-armbian-debian-on-an-orange-pi-zero/) que mostra a instalação bem detalhada do Armbian para o Orange PI Zero, mas as instruções servem para qualquer outra placa.
+
+Após realizar todas as ligações na placa, o Armibian instalado no SD, logado ao terminal via SSH e com acesso a internet,  vamos preparar o Armbiam para executar nosso script em python.
+
+Essas instruções e as pinagens acima servirá para qualquer computer-board compatível com Armbiam.
 
 
-#Installing NodeJs
+### Instalando o NodeJs
 
-sudo apt install nodejs
+`sudo apt install nodejs`
 
-#Installing NPM
+Caso a instalação tenha ocorrido com sucesso ao emitir o comando `nodejs -v` irá mostar a versão do Node
 
-sudo apt install npm
+### Intalando o NPM
 
-#Installing Zowe CLI
+`sudo apt install npm`
 
-sudo npm config set @brightside:registry https://api.bintray.com/npm/ca/brightside
+Caso a instalação tenha ocorrido com sucesso ao emitir o comando `npm -v` irá mostar a versão do NPM
 
-sudo npm install -g @brightside/core@lts-incremental
+### Instalando o Zowe CLI
+
+Essa API é o que faz tudo acontecer, será através dela que iremos interagir com o mainframe.
+
+`sudo npm config set @brightside:registry https://api.bintray.com/npm/ca/brightside`
+
+`sudo npm install -g @brightside/core@lts-incremental`
 
 Ignore as mensagens de erros
 
-#Install Python PIP
+Se ao emitir o comando `zowe -V` exibir a versão do ZOWE, ocorreu tudo bem, podemos seguir em frente.
 
-sudo apt-get install python3-pip
+### Instalando o Python PIP
 
-#habilitando interface i2c no Armbian
+`sudo apt-get install python3-pip`
 
-sudo armbian-config
+### Habilitando interface i2c no Armbian
 
-System >> Hardware >> i2c0 (checked with space) >> Save >> Back >> reboot
+Por padrão, a interface i2c do Armbian está desabilitada, para habilitar usaremos a GUI de configuração do SO.
 
-#habilitando interface i2c no Raspbian
+`sudo armbian-config`
 
-sudo raspi-config
+System >> Hardware >> i2c0 (Habilita com a tecla spaço) >> Save >> Back >> reboot
 
-Interfacing Options >> I2C >> Yes >> OK	 >> Finish 
+Obs. Para o correto funcionamento do script é importante que seja habilitado a interface i2c0.
 
-#Installing smbus
+### Instalando a biblioteca smbus
 
-sudo apt-get install python3-smbus
+A biblioteca python3-smbus é responsável por gerir a comunicação entre a interface i2c.
 
-#Install GPIO library for Python
+`sudo apt-get install python3-smbus`
 
-sudo pip3 install --upgrade OPi.GPIO
+### Install GPIO library for Python
 
-# Clone scripts of the MTM Job Submmiter
+A biblioteca python OPi.GPIO permite acessar e controlar as interfaces GPIO Orange PI Zero.
+Essa biblioteca permite um mapeapento pelo número do pino, e não pelo número da porta, permitindo que o mesmo código seja executado em dierentes single-board computer de mercado sem a necessidade de alteração no código.
 
-git clone https://github.com/maxwellwolf/mtm2020jobsubmitter.git
-cd mtm2020jobsubmitter
+`sudo pip3 install --upgrade OPi.GPIO`
 
-#Alterando as variáveis de dataset e conexão
+### Clone scripts of the MTM Job Submmiter
+
+Agora vamos tranferir para o Armbian os arquivos do nosso projeto
+
+`git clone https://github.com/maxwellwolf/mtm2020jobsubmitter.git`
+`cd mtm2020jobsubmitter`
+
+### Alterando as variáveis de dataset e conexão
 
 Caso queira apontar para outra biblioteca de JCL e/ou alterar os parâmentros de conexão é necessário editar as seguintes variáveis do script mtmjobsubmitter.py:
 
-# Variaveis de conexão
-path = "Z00209.JCL" # Biblioteca com as fontes JCL
+```
+path = "Z00000.JCL"      # Biblioteca com as fontes JCL
 ipHost = "192.86.32.153" # IP do ZOSMF
-portHost = "10443" # Porta do ZOSMF
-user = "z00209" # ID de usuário
-passwd = "fruit102" # Senha de usuário
-  
-#Incluindo script para executar no boot
+portHost = "10443"       # Porta do ZOSMF
+user = "z00000"          # ID de usuário
+passwd = "fruit102"      # Senha de usuário
+```  
 
-sudo sed -i '13 isudo python3 /home/mtm/mtm2020jobsubmitter/mtmjobsubmitter.py' /etc/rc.local
+### Incluindo script para executar no boot
+
+`sudo sed -i '13 isudo python3 /home/mtm/mtm2020jobsubmitter/mtmjobsubmitter.py' /etc/rc.local`
+
+### GO, GO, GO!
+
+Se toda a instalação ocorreu bem e foram feitas as ligações corretamente podemos executar nosso scrip com o comando:
+
+`sudo python3 mtmjobsubmitter.py`
+
+Ou se preferir, reinicie o Armbiam que o script executará assim que o sistema terminar de carregar.
+
+`sudo reboot`
+
+Após inicializar o script você verá na primeira linha do display "MTM20 JOB SUBMITTER!" e o primeiro JCL da lista na segunda linha.
+
+Para navegar entre os JCL aperte os botões UP e DOWN, ao escolher o JOB a ser executado, precione o botão SUB para submeter o JOB e agora é só aguardar o termino da execução.
+
+Segue o vídeo do projeto em funcionamento:
