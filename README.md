@@ -130,4 +130,5 @@ Após inicializar o script você verá na primeira linha do display "MTM20 JOB S
 Para navegar entre os JCL aperte os botões UP e DOWN, ao escolher o JOB a ser executado, pressione o botão SUB para submeter o JOB e agora é só aguardar o término da execução.
 
 Segue o vídeo do projeto em funcionamento:
-![Video](https://youtu.be/gtbkg5on7vc)
+
+[![MTM20 JOB SUBMITTER](https://i9.ytimg.com/vi/gtbkg5on7vc/mq3.jpg?sqp=CLC7_P8F&rs=AOn4CLBy4wr7uzF5hR5rV8VenkttQ2eOQQ)](https://youtu.be/gtbkg5on7vc)
