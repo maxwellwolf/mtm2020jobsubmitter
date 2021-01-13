@@ -96,6 +96,7 @@ Essa biblioteca permite um mapeamento pelo número do pino, e não pelo número 
 Agora vamos tranferir para o Armbian os arquivos do nosso projeto.
 
 `git clone https://github.com/maxwellwolf/mtm2020jobsubmitter.git`
+
 `cd mtm2020jobsubmitter`
 
 ### Alterando as variáveis de dataset e conexão
