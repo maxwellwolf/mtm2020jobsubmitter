@@ -9,6 +9,8 @@ Após a submissão do JOB o MTM2020 JOB SUBMITTER irá exibir no display o JOB I
 * Caso a execução terminar com sucesso, porém, houver algum warning, irá exibir no display o retun code e acenderá o LED amarelo.
 * Caso a execução terminar com erro, será exibido no display o código de erro ou a mensagem de erro e acenderá o LED vermelho.
 
+A idéia principal é domonstrar as possibilidades do dispositivo em interagir com o mainframe e executar ações conforme o resultado obtido, abrindo um leque de possibilidades dentro do conceito de automação e internet das coisas.
+
 Foi utilizado para esse projeto os seguintes itens:
 - Um single-board computer Orange PI Zero rodando a versão do Linux Armbian.
 - Cartão de memória de 2Gb para a armazenar o sistema operacional.
